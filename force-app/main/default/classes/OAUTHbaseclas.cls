@@ -152,8 +152,9 @@ String code=ApexPages.currentPage().getParameters().get('code');
                                     if(httpRes.getStatusCode() == 200 || httpRes.getStatusCode() == 201 ){
 
                                         System.debug('Success \n '+ httpRes.getBody() );
+                                        String bb=httpRes.getBody();
                                         //now we have to save response on custom metadata so
-                                        OAUTHWrapper wrapper=(OAUTHWrapper)System.JSON.deserialize(httpRes.getBody(),OAUTHWrapper.class);
+                                        OAUTHWrapper wrapper=(OAUTHWrapper)System.JSON.deserialize(bb,OAUTHWrapper.class);
            
               //now to pass the values to custommetadat class to save n deploy
         
