@@ -76,11 +76,11 @@ String code=ApexPages.currentPage().getParameters().get('code');
            
               //now to pass the values to custommetadat class to save n deploy
                //fullname- objectname.+labelname
-            //   String fullname='OAuthSalesforce.'+'oauthconfig';
-            // String label ='oauthconfig';
+              String fullname='OAuthSalesforce.'+'oauthconfig';
+            String label ='oauthconfig';
             //diff label name
-            String fullname='OAuthSalesforce.'+'name';
-            String label ='name';
+            // String fullname='OAuthSalesforce.'+'name';
+            // String label ='name';
 
             Map<String, Object> fieldWithValuesMap = new Map<String, Object>();
             fieldWithValuesMap.put('Accesstoken__c', wrapper.access_token);
@@ -109,5 +109,80 @@ String code=ApexPages.currentPage().getParameters().get('code');
     }
 
     }
+
+    //to check the expires in time is less than system,now time , if so thenw e hve to call refresh api
+
+    public static boolean tokenvalid(OAuthSalesforce__mdt oathconfig){
+        boolean tokenvalid=true;
+
+       if( oathconfig.Expireintime__c <System.now()){
+        tokenvalid=false;
+       }
+       return tokenvalid;
+    }
+
+    public static Map<String, Object> refreshtoken(OAuthSalesforce__mdt oathconfig1){
+
+        /*refresh url 
+            POST /services/oauth2/token HTTP/1.1
+            Host: login.salesforce.com/ 
+            grant_type=refresh_token&
+            client_id=3MVG9lKcPoNINVBIPJjdw1J9LLM82HnFVVX19KY1uA5mu0QqEWhqKpoW3svG3XHrXDiCQjK1mdgAvhCscA9GE&client_secret=1955279925675241571&
+            refresh_token=your token here 
+
+        */
+
+       
+
+        OAuthSalesforce__mdt oathconfig=OAuthSalesforce__mdt.getInstance('oauthconfig');
+       
+
+            String orgUrl  = oathconfig.Environment__c == 'Production' ? 'https://login.salesforce.com' : 'https://test.salesforce.com';
+        String finaltokenurl=orgUrl+oathconfig.tokenurl__c;
+
+        
+        String body='grant_type=refresh_token&client_id='
+                                +oathconfig.clientid__c+'&client_secret='
+                                +oathconfig.clientsecret__c+'&refresh_token='+oathconfig.refreshtoken__c;
+                                HTTPRequest req=Calloututils.preparehttprequest(finaltokenurl,'POST',body,'application/json','application/x-www-form-urlencoded');
+                                Map<String, Object> fieldWithValuesMap = new Map<String, Object>();
+                               
+                                try{
+                                    HttpResponse httpRes = (new Http()).send(req);
+                                    if(httpRes.getStatusCode() == 200 || httpRes.getStatusCode() == 201 ){
+
+                                        System.debug('Success \n '+ httpRes.getBody() );
+                                        //now we have to save response on custom metadata so
+                                        OAUTHWrapper wrapper=(OAUTHWrapper)System.JSON.deserialize(httpRes.getBody(),OAUTHWrapper.class);
+           
+              //now to pass the values to custommetadat class to save n deploy
+        
+// here only refresh and access toke woll be changed so we have to write only for this
+           
+            fieldWithValuesMap.put('Accesstoken__c', wrapper.access_token);
+           
+            fieldWithValuesMap.put('refreshtoken__c', wrapper.refresh_token);
+           
+        
+
+                                    }else{
+                                        System.debug('ERROR \n '+ httpRes.getBody() );
+                                    }
+                                }catch(Exception e){
+                        
+                                }
+
+
+                                return fieldWithValuesMap;
+    
+    
+                                // since we canot doe callout and dml operation . so first perform the callout. save thsi values in map
+    
+                          
+                            }
+
+   
+    
 }
+
 
