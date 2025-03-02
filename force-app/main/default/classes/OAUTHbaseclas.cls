@@ -79,6 +79,7 @@ String code=ApexPages.currentPage().getParameters().get('code');
               String fullname='OAuthSalesforce.'+'oauthconfig';
             String label ='oauthconfig';
             //diff label name
+            // String fullname='OAuthSalesforce.'+'name';(object name +Label name)
             // String fullname='OAuthSalesforce.'+'name';
             // String label ='name';
 
