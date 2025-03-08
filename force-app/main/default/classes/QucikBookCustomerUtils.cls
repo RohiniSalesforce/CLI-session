@@ -91,12 +91,32 @@ public with sharing class QucikBookCustomerUtils {
                 //any response between thisis success
                 
                 if(response.getStatusCode()>=200 && response.getStatusCode()<300  ){
+                    String res=response.getBody();
                        System.System.debug(response.getBody());
                        System.System.debug(response.getStatusCode());
+                       
+                       Quickbookresponsewrapper wp=(Quickbookresponsewrapper)System.JSON.deserialize(res, Quickbookresponsewrapper.class);
                       // to get the customer id values
-                       Map<String,Object> responseMap = (Map<String,Object>)System.JSON.deserializeUntyped(response.getBody());
-                    String customerId = (String)responseMap.get('Id');
-                    System.debug('Successfully Inserted Customer '+ customerId);
+                    //    Map<String,Object> responseMap = (Map<String,Object>)System.JSON.deserializeUntyped(res);
+                    // String customerId = (String)responseMap.get('Id');
+                    // String CompanyName = (String)responseMap.get('CompanyName');
+                    System.System.debug(wp);
+                
+                    System.System.debug( wp.Customer.Id);
+                    System.System.debug(wp.Customer.CompanyName);
+                   
+                    List<QucikBookscustomer__c> customerup=[SELECT Id,Compant_Name__c,QuickBookExternalID__c,Sync_in_quickbook__c
+                                                               FROM QucikBookscustomer__c
+                                                             WHERE Name!=null
+                                                             ];
+                    for(QucikBookscustomer__c cu:customerup){
+                        if(cu.Compant_Name__c==wp.Customer.CompanyName){
+                            cu.QuickBookExternalID__c=wp.Customer.Id;
+                            cu.Sync_in_quickbook__c=true;
+                            update cu;
+                        }
+                    }
+                    System.debug('Successfully Inserted Customer '+ wp.Customer.Id);
                 }else{
                     //error catch
                     System.System.debug(response.getBody());

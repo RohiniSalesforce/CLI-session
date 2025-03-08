@@ -28,6 +28,6 @@ public class QucikBookCustomerWrapper {
 		public String Line1;	    //123 Main Street
 		public String Country;	    //USA
 	}
-    
+   
     
 }
