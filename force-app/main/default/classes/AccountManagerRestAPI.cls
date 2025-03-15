@@ -15,7 +15,7 @@ global with sharing class AccountManagerRestAPI {
 
 
  @httpGet
- global static List<Account> getaccountlist(){
+ global static Account getaccountlist(){
 
     //we are using the below sntax to print the request and response on debug
    // rest is a apex class we need to convert to json response so we are using serialize
@@ -27,7 +27,7 @@ global with sharing class AccountManagerRestAPI {
         System.debug(System.JSON.serializePretty(res));
     return [SELECT  Id, Name, Rating, Phone, Fax, Industry, BillingAddress, ShippingAddress
                  FROM Account
-                 Limit 10
+                 Limit 1
     
     ];
     
@@ -78,11 +78,11 @@ global with sharing class AccountManagerRestAPI {
         acc.Phone    = Phone;
         acc.Rating= Rating;
        
-        insert acc;
 
-        // Construct a response
+        //Construct a response
         res.responseBody = Blob.valueOf('{"message": "Data received successfully"}');
         res.statusCode = 200;
+
 
     } catch (JSONException e) {
         // Handle JSON parsing errors
@@ -129,6 +129,11 @@ global with sharing class AccountManagerRestAPI {
     return acc;
  
  }
+ @httpDelete
+    global static void deleteRecords(){
+        String accountId = RestContext.request.requestURI.substringAfterLast('/');
+        Database.delete(accountId);
+    }
 
 
 
