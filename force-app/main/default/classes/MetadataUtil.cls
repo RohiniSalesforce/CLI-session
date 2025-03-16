@@ -18,6 +18,7 @@ public class MetadataUtil {
         
         MetadataService.MetadataPort service = new MetadataService.MetadataPort();
         service.SessionHeader = new MetadataService.SessionHeader_element();
+        //if test calss is running then et the user infor seession if , els get sessionifs
         service.SessionHeader.sessionId = Test.isRunningTest()?UserInfo.getSessionId(): fetchUserSessionId();
         return service;
         
