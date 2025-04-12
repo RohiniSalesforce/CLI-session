@@ -1,0 +1,26 @@
+<template>
+
+<lightning-card title="getter example">
+    <div class="slds-var-m-around_medium">
+        <lightning-button variant="brand" label="Brand" title="Primary action" onclick={handleClick} class="slds-var-m-left_x-small">
+
+        </lightning-button>
+        <template if:true={visible}>
+        <div>Element is visble</div>
+        </template>
+        <template if:false={visible}>
+            <div>Element is invisble plese click this button</div>
+        </template>
+        <lightning-input type="text" label="Enter some text" onkeyup={handleclickinput}  ></lightning-input>
+        <template if:true={handleChangeinput}>
+            <div>Text is valid</div>
+        </template>
+        <template if:false={handleChangeinput}>
+            <div>Text is invalid</div>
+        </template>
+    
+    </div>
+
+
+</lightning-card>
+</template>

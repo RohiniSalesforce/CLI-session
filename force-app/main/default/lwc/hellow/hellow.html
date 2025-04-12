@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Two binding for greeting">
+        <div class="slds-var-m-around_medium">
+        <lightning-input type="text" label="Enter some text" onkeyup={handleInputChange} ></lightning-input>
+  
+        <div>{greeting}, {name}</div>
+    </div>
+    
+    </lightning-card>
+    <lightning-card title="track changes">
+        <div class="slds-var-m-around_medium">
+        <lightning-input type="text" label="Enter some text" onkeyup={handleChange} ></lightning-input>
+  
+        <div>{address.street}</div>
+    </div>
+    
+    </lightning-card>
+    <lightning-card title="getter example">
+        <div class="slds-var-m-around_medium">
+            <div>{sum}</div>
+            <div>First User: {firstusername}</div>   
+    </div>
+    
+    </lightning-card>
+</template>
