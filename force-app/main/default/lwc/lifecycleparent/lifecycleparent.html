@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="lifecycle parent example">
+        <div class="slds-var-m-around_medium">
+            <div>
+                <h1>Lifecycle Parent Component</h1>
+                 
+                <template if:true={ischildvisible}>
+                    <lightning-button variant="brand"  label="remove Child" onclick={toggleChild} class="slds-m-left_x-small"></lightning-button>
+               
+                   
+                </template>
+                <template if:false={ischildvisible}>
+                    <lightning-button variant="brand"  label="show Child" onclick={toggleChild} class="slds-m-left_x-small"></lightning-button>
+                    
+                </template>
+            
+               <template if:true={ischildvisible}>
+                <c-childlifecyclecomponent></c-childlifecyclecomponent>
+            </template>
+                
+            </div>
+        </div>  
+    
+    </lightning-card>
+</template>
