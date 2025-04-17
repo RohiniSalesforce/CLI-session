@@ -18,4 +18,14 @@ export default class Parenttochildcomponentsprimitve extends LightningElement {
          "description": "W3Schools.com"
     }
 ]
+somevalue=10
+changehandler(event){
+    this.somevalue=event.target.value;
+
+}
+handleclick(event){
+    const childcomponent=this.template.querySelector('c-sliderchildcomponent');
+    childcomponent.resetslider();
+
+}
 }
