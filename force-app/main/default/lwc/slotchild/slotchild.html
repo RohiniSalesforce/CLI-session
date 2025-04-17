@@ -1,0 +1,11 @@
+<template>
+    <div>Child name</div>
+    <!-- slot menas here we are passing something from parent comp-->
+     <!-- Below is the unnamed sloet , as we are not mentioned the what name we are passing -->
+    <div><slot name="first"></slot></div>
+    <div>Age</div>
+    <div><slot name="second"></slot></div>
+    <footer class="slds-card__footer slds-hide">
+        <slot name="footer" onslotchange={handlefooterchange}></slot>
+    </footer>
+</template>
