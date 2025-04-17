@@ -1,0 +1,9 @@
+:host {
+    background-color: lightblue;
+    color: gold;
+}
+
+:host(.blues) {
+    background-color: lightblue;
+    color: blue;
+}

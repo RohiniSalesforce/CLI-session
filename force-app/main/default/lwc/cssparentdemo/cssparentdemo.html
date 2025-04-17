@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="getter example">
+        <div class="slds-var-m-around_medium">
+        <h1 class="slds-text-heading_medium">CSS Parent Demo</h1>
+        <!-- parent and child componet have same h1 component and stytle this
+         h1 in parent css , and child as a hsot element -->
+         <c-csschilddemo>
+            <p>hellow i am slot1</p>
+         </c-csschilddemo>
+         <c-csschilddemo class="blues">
+            <p>hellow i am slot2</p>
+         </c-csschilddemo>
+        </div>
+    </lightning-card> 
+</template>
