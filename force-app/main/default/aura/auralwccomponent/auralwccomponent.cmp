@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="message" type="String" />
+    <lightning:card title="AUra LWC comp">
+        <div class="slds-var-m-around_medium">
+            <div>{!v.message}</div>
+        </div>
+        <div class="slds-var-m-around_medium">
+            <!-- mycustomevent - custom event , so use on html before any event  -->
+            <c:lwcauracomp title="hello from aura component" onmycustomevent="{!c.handlemsg}"></c:lwcauracomp>
+        </div>
+    </lightning:card>
+    
+</aura:component>
