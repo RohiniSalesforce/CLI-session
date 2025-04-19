@@ -1,0 +1,26 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="messagevalue" type="String" default=""/>
+    <aura:attribute name="messagerecieved" type="Object" />
+   <lightning:messageChannel type="SampleMessagingChannel__c" scope="APPLICATION" 
+    onMessage="{!c.handlemessage}"
+    aura:id="SampleMessagingChannel" />
+   
+   <lightning:card title="LWC to Aura Communication" >
+      <div class="slds-m-around_medium">
+        <label>Message from LWC:</label>
+        <input type="text" value="{!v.messagevalue}"  onkeyup="{!c.inputhandler}"
+        id="messageInput" name="messageInput" class="slds-input" />
+        
+         
+      </div>
+      <div class="slds-m-around_medium">
+        <lightning:button variant="brand" label="Publish Message" onclick="{!c.Publish}" class="slds-m-left_x-small"/>
+         
+      </div>
+      <div class="slds-m-around_medium">
+        <h1>MEssage recoeved</h1>
+        <lightning:formattedText value="{!v.messagerecieved}" />
+      </div>
+   </lightning:card>
+
+</aura:component>
