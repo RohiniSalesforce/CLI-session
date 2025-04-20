@@ -1,0 +1,34 @@
+<template>
+
+    <lightning-card title="Profile check">
+    <div class="slds-var-m-around_medium">
+       <template if:true={viewalldataavialbale}>
+            <p>You have permission to view this content profile.</p>
+        </template>
+        <template if:false={viewalldataavialbale}>
+            <p>You do not have permission to view this content profile.</p>
+        </template>
+    </div>
+    </lightning-card>
+    <lightning-card title="Permission check">
+        <div class="slds-var-m-around_medium">
+           <template if:true={checkpermisionavialbale}>
+                <p>You have permission to view this content permission.</p>
+            </template>
+            <template if:false={checkpermisionavialbale}>
+                <p>You do not have permission to view this content permission.</p>
+            </template>
+        </div>
+        </lightning-card>
+        <lightning-card title="Other details">
+            <div class="slds-var-m-around_medium">
+                <p>formfactor: {formfactor1}</p>
+                <p>userid: {userid}</p>
+                <p>isguestuser: {isguestuser}</p>
+                <p>recordId: {recordId}</p>
+                <p>objectApiName: {objectApiName}</p>
+            </div>
+            </lightning-card>
+    
+        
+</template>
