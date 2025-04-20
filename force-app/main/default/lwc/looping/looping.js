@@ -1,7 +1,8 @@
 import Company from '@salesforce/schema/Lead.Company';
-import { LightningElement } from 'lwc';
+import { LightningElement ,api} from 'lwc';
 
 export default class Looping extends LightningElement {
+    @api recordId;
     carlist=["volvo","saab","mercedes","audi"];
     ceolist=[
         {
