@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="Industry picklist">
+        <lightning-card title="Industry picklist">
+        
+            <div class="slds-m-around_medium">
+                <lightning-combobox
+                    name="Industry"
+                    label="Industry"
+                    value={selectedfeildInd}
+                    placeholder="Select Industry Value"
+                    options={industryoptions}
+                    onchange={handlePicklistChange}>
+                </lightning-combobox>
+            </div>
+            <p> selected value: {selectedfeildInd}</p>
+        </lightning-card>
+        <lightning-card title="Rating picklist">
+        
+            <div class="slds-m-around_medium">
+                <lightning-combobox
+                    name="Rating"
+                    label="Rating"
+                    value={selectedfeildrating}
+                    placeholder="Select Rating Value"
+                    options={ratingoptions}
+                    onchange={handlePicklistChange}>
+                </lightning-combobox>
+            </div>
+            <p> selected value: {selectedfeildrating}</p>
+        </lightning-card>
+    </lightning-card>
+</template>
