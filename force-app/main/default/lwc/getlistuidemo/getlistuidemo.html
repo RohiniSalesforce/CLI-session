@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="listui">
+        <div class="slds-var-m-around_medium">
+           <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col" class="slds-text-align_left">Name</th>
+                        <th scope="col" class="slds-text-align_left">Email</th>
+                        <th scope="col" class="slds-text-align_left">Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={contactrec} for:item="item">
+                        <tr key={item.fields.Id.value}>
+                            <td>{item.fields.Name.value}</td>
+                            <td>{item.fields.Email.value}</td>
+                            <td>{item.fields.Title.value}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <div class="slds-grid">
+            <div class="slds-var-m-around_medium">
+                <lightning-button variant="brand" label="Previous" onclick={Previous}></lightning-button>
+            </div>
+            <div class="slds-var-m-around_medium">
+                <lightning-button variant="brand" label="Next" onclick={Next}></lightning-button>
+            </div>
+        </div>
+
+        </lightning-card>
+</template>
