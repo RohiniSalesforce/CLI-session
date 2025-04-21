@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="Record Form Example" >
+        <lightning-record-form
+            object-api-name={OBJECT_NAME}
+            fields={field_list}
+            onsuccess={handleSuccess} 
+        ></lightning-record-form>
+
+</lightning-card>
+<lightning-card title="Display Record Form " >
+    <lightning-record-form
+        record-id="001dL00000xMAGTQA4"
+        object-api-name={OBJECT_NAME}
+        fields={field_list}
+    ></lightning-record-form>
+    
+</lightning-card>
+<lightning-card title="Display Record Form in view mode" >
+    <lightning-record-form
+        record-id="001dL00000xMAGTQA4"
+        object-api-name={OBJECT_NAME}
+        fields={field_list}
+        mode="readonly"
+    ></lightning-record-form>
+    
+</lightning-card>
+<lightning-card title="Display Record Form in Edit mode" >
+    <lightning-record-form
+        record-id="001dL00000xMAGTQA4"
+        object-api-name={OBJECT_NAME}
+        fields={field_list}
+        mode="edit"
+        columns="2"
+    ></lightning-record-form>
+    
+</lightning-card>
+<lightning-card title="Display Record Form in Edit mode in compact layout" >
+    <lightning-record-form
+        record-id={recordId}
+        object-api-name={objectApiName}
+        fields={field_list}
+        mode="edit"
+        columns="2"
+        layout-type="compact"
+    ></lightning-record-form>
+    
+</lightning-card>
+</template>
