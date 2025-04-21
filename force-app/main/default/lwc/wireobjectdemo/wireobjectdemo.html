@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Wire Adapter Demo where single object">
+        
+        <div class="slds-m-around_medium">
+            <template if:true={objectInfoHandler.data}>
+                <div>api name - {objectInfoHandler.data.apiName}</div>
+                <div>Id  - {objectInfoHandler.data.defaultRecordTypeId}</div>
+
+            </template>
+        </div>
+    </lightning-card>
+    <lightning-card title="Wire Adapter Demo where multiple object">
+        
+        <div class="slds-m-around_medium">
+           <template if:true={objectInfos}>
+                <template for:each={objectInfos.results} for:item="infodetails">
+                    <div key={infodetails.result.apiName}>
+                        <div>api name - {infodetails.result.apiName}</div>
+                        <div>Id  - {infodetails.result.defaultRecordTypeId}</div>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>
