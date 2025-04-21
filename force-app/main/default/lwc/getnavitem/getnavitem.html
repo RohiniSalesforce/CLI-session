@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="getRecord">
+        <div class="slds-var-m-around_medium">
+        <template if:true={navitems}>
+            <div class="slds-var-m-around_medium">
+                <div>{navitems.objectApiName}</div>
+                <div>{navitems.developerName}</div>
+                <div>{navitems.pageReference.type}</div>
+                
+            </div>
+        </template>
+        </div>
+        </lightning-card>
+</template>
